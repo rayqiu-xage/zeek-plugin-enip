@@ -1,16 +1,16 @@
 #include "Plugin.h"
-#include "analyzer/Component.h"
+#include "zeek/analyzer/Component.h"
 
-namespace plugin { 
+namespace zeek::plugin { 
     namespace Zeek_ENIP {
         Plugin plugin;
         }
     }
 
-using namespace plugin::Zeek_ENIP;
+using namespace zeek::plugin::Zeek_ENIP;
 
-plugin::Configuration Plugin::Configure() {
-    AddComponent(new ::analyzer::Component("ENIP", ::analyzer::enip::ENIP_Analyzer::Instantiate));
+zeek::plugin::Configuration Plugin::Configure() {
+    AddComponent(new zeek::analyzer::Component("ENIP", zeek::analyzer::enip::ENIP_Analyzer::Instantiate));
     
     plugin::Configuration config;
     config.name = "Zeek::ENIP";

@@ -1,12 +1,12 @@
 #ifndef ANALYZER_PROTOCOL_ENIP_H
 #define ANALYZER_PROTOCOL_ENIP_H
 
-#include "analyzer/protocol/tcp/TCP.h"
+#include "zeek/analyzer/protocol/tcp/TCP.h"
 #include "enip_pac.h"
 
-namespace analyzer { 
+namespace zeek::analyzer { 
     namespace enip {
-        class ENIP_Analyzer : public tcp::TCP_ApplicationAnalyzer {
+        class ENIP_Analyzer : public zeek::analyzer::tcp::TCP_ApplicationAnalyzer {
             public:
                 ENIP_Analyzer(Connection* conn);
                 virtual ~ENIP_Analyzer();

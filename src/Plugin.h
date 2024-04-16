@@ -1,19 +1,18 @@
 #ifndef ZEEK_PLUGIN_ZEEK_ENIP
 #define ZEEK_PLUGIN_ZEEK_ENIP
 
-#include <plugin/Plugin.h>
+#include "zeek/plugin/Plugin.h"
 #include "ENIP.h"
 
-namespace plugin {
-    namespace Zeek_ENIP {
-        class Plugin : public ::plugin::Plugin {
-            protected:
+namespace zeek::plugin::Zeek_ENIP {
+        class Plugin : public plugin::Plugin {
+            public:
+                Plugin() = default;
                 // Overridden from plugin::Plugin.
-                virtual plugin::Configuration Configure();
-            };
+                plugin::Configuration Configure() override;
+        };
 
         extern Plugin plugin;
-        }
     }
 
 #endif

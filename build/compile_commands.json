@@ -1,0 +1,32 @@
+[
+{
+  "directory": "/home/ray/workspace/zeek-plugin-enip/build",
+  "command": "/usr/bin/c++ -DDOCTEST_CONFIG_SUPER_FAST_ASSERTS -DZeek_ENIP_EXPORTS -I/home/ray/workspace/zeek-plugin-enip/build -I/home/ray/workspace/zeek-plugin-enip/src -isystem /opt/zeek/include -isystem /opt/zeek/include/zeek/3rdparty/rapidjson/include -O3 -DNDEBUG -fPIC -o CMakeFiles/Zeek_ENIP.dir/events.bif.cc.o -c /home/ray/workspace/zeek-plugin-enip/build/events.bif.cc",
+  "file": "/home/ray/workspace/zeek-plugin-enip/build/events.bif.cc"
+},
+{
+  "directory": "/home/ray/workspace/zeek-plugin-enip/build",
+  "command": "/usr/bin/c++ -DDOCTEST_CONFIG_SUPER_FAST_ASSERTS -DZeek_ENIP_EXPORTS -I/home/ray/workspace/zeek-plugin-enip/build -I/home/ray/workspace/zeek-plugin-enip/src -isystem /opt/zeek/include -isystem /opt/zeek/include/zeek/3rdparty/rapidjson/include -O3 -DNDEBUG -fPIC -o CMakeFiles/Zeek_ENIP.dir/events.bif.init.cc.o -c /home/ray/workspace/zeek-plugin-enip/build/events.bif.init.cc",
+  "file": "/home/ray/workspace/zeek-plugin-enip/build/events.bif.init.cc"
+},
+{
+  "directory": "/home/ray/workspace/zeek-plugin-enip/build",
+  "command": "/usr/bin/c++ -DDOCTEST_CONFIG_SUPER_FAST_ASSERTS -DZeek_ENIP_EXPORTS -I/home/ray/workspace/zeek-plugin-enip/build -I/home/ray/workspace/zeek-plugin-enip/src -isystem /opt/zeek/include -isystem /opt/zeek/include/zeek/3rdparty/rapidjson/include -O3 -DNDEBUG -fPIC -o CMakeFiles/Zeek_ENIP.dir/events.bif.register.cc.o -c /home/ray/workspace/zeek-plugin-enip/build/events.bif.register.cc",
+  "file": "/home/ray/workspace/zeek-plugin-enip/build/events.bif.register.cc"
+},
+{
+  "directory": "/home/ray/workspace/zeek-plugin-enip/build",
+  "command": "/usr/bin/c++ -DDOCTEST_CONFIG_SUPER_FAST_ASSERTS -DZeek_ENIP_EXPORTS -I/home/ray/workspace/zeek-plugin-enip/build -I/home/ray/workspace/zeek-plugin-enip/src -isystem /opt/zeek/include -isystem /opt/zeek/include/zeek/3rdparty/rapidjson/include -O3 -DNDEBUG -fPIC -Wno-tautological-compare -o CMakeFiles/Zeek_ENIP.dir/enip_pac.cc.o -c /home/ray/workspace/zeek-plugin-enip/build/enip_pac.cc",
+  "file": "/home/ray/workspace/zeek-plugin-enip/build/enip_pac.cc"
+},
+{
+  "directory": "/home/ray/workspace/zeek-plugin-enip/build",
+  "command": "/usr/bin/c++ -DDOCTEST_CONFIG_SUPER_FAST_ASSERTS -DZeek_ENIP_EXPORTS -I/home/ray/workspace/zeek-plugin-enip/build -I/home/ray/workspace/zeek-plugin-enip/src -isystem /opt/zeek/include -isystem /opt/zeek/include/zeek/3rdparty/rapidjson/include -O3 -DNDEBUG -fPIC -o CMakeFiles/Zeek_ENIP.dir/src/ENIP.cc.o -c /home/ray/workspace/zeek-plugin-enip/src/ENIP.cc",
+  "file": "/home/ray/workspace/zeek-plugin-enip/src/ENIP.cc"
+},
+{
+  "directory": "/home/ray/workspace/zeek-plugin-enip/build",
+  "command": "/usr/bin/c++ -DDOCTEST_CONFIG_SUPER_FAST_ASSERTS -DZeek_ENIP_EXPORTS -I/home/ray/workspace/zeek-plugin-enip/build -I/home/ray/workspace/zeek-plugin-enip/src -isystem /opt/zeek/include -isystem /opt/zeek/include/zeek/3rdparty/rapidjson/include -O3 -DNDEBUG -fPIC -o CMakeFiles/Zeek_ENIP.dir/src/Plugin.cc.o -c /home/ray/workspace/zeek-plugin-enip/src/Plugin.cc",
+  "file": "/home/ray/workspace/zeek-plugin-enip/src/Plugin.cc"
+}
+]

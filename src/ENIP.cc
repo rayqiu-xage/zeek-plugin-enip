@@ -1,9 +1,9 @@
 #include "ENIP.h"
-#include "analyzer/protocol/tcp/TCP_Reassembler.h"
-#include "Reporter.h"
+#include "zeek/analyzer/protocol/tcp/TCP_Reassembler.h"
+#include "zeek/Reporter.h"
 #include "events.bif.h"
 
-using namespace analyzer::enip;
+using namespace zeek::analyzer::enip;
 
 ENIP_Analyzer::ENIP_Analyzer(Connection* c): tcp::TCP_ApplicationAnalyzer("ENIP", c) {
     interp = new binpac::ENIP::ENIP_Conn(this);
@@ -39,7 +39,7 @@ void ENIP_Analyzer::DeliverStream(int len, const u_char* data, bool orig) {
         interp->NewData(orig, data, data + len);
         }
     catch(const binpac::Exception& e) {
-        ProtocolViolation(fmt("Binpac exception: %s", e.c_msg()));
+        AnalyzerViolation(zeek::util::fmt("Binpac exception: %s", e.c_msg()));
         }
     }
 

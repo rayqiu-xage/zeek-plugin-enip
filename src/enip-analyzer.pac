@@ -1,7 +1,7 @@
 ## Copyright 2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 ## SPDX-License-Identifier: BSD-3-Clause
 
-connection ENIP_Conn(bro_analyzer: BroAnalyzer) {
+connection ENIP_Conn(zeek_analyzer: ZeekAnalyzer) {
     upflow   = ENIP_Flow(true);
     downflow = ENIP_Flow(false);
     };
@@ -29,92 +29,92 @@ flow ENIP_Flow(is_orig: bool) {
         if(::enip) {
             if(${header.command} == NOP) {
             //    if(${header.status} != ZERO_4B) {
-            //        connection()->bro_analyzer()->ProtocolViolation(fmt("invalid ENIP NOP status (%d)", ${header.status}));
+            //        connection()->zeek_analyzer()->AnalyzerViolation(zeek::util::fmt("invalid ENIP NOP status (%d)", ${header.status}));
             //        return false;
             //        }
             //    if(${header.options} != ZERO_4B) {
-            //        connection()->bro_analyzer()->ProtocolViolation(fmt("invalid ENIP NOP options(%d)", ${header.options}));
+            //        connection()->zeek_analyzer()->AnalyzerViolation(zeek::util::fmt("invalid ENIP NOP options(%d)", ${header.options}));
             //        return false;
             //        }
 
-                connection()->bro_analyzer()->ProtocolConfirmation();
+                connection()->zeek_analyzer()->AnalyzerConfirmation();
                 }
             else if(${header.command} == LIST_IDENTITY || ${header.command} == LIST_INTERFACES) {
             //    if(${header.length} != ZERO_2B) {
-            //        connection()->bro_analyzer()->ProtocolViolation(fmt("invalid ENIP LIST_IDENTITY/LIST_INTERFACES length (%d)", ${header.length}));
+            //        connection()->zeek_analyzer()->AnalyzerViolation(zeek::util::fmt("invalid ENIP LIST_IDENTITY/LIST_INTERFACES length (%d)", ${header.length}));
             //        return false;
             //        }
             //    if(${header.options} != ZERO_4B) {
-            //        connection()->bro_analyzer()->ProtocolViolation(fmt("invalid ENIP LIST_IDENTITY/LIST_INTERFACES options (%d)", ${header.options}));
+            //        connection()->zeek_analyzer()->AnalyzerViolation(zeek::util::fmt("invalid ENIP LIST_IDENTITY/LIST_INTERFACES options (%d)", ${header.options}));
             //        return false;
             //        }
             //    for(unsigned int i = 0; i < SIZE; i++) {
             //        if(${header.sendor_context[i]} != ZERO_1B) {
-            //            connection()->bro_analyzer()->ProtocolViolation(fmt("invalid ENIP LIST_IDENTITY/LIST_INTERFACES sender context (%d)", ${header.sender_context[i]}));
+            //            connection()->zeek_analyzer()->AnalyzerViolation(zeek::util::fmt("invalid ENIP LIST_IDENTITY/LIST_INTERFACES sender context (%d)", ${header.sender_context[i]}));
             //            return false;
             //            }
             //    }
 
-                connection()->bro_analyzer()->ProtocolConfirmation();
+                connection()->zeek_analyzer()->AnalyzerConfirmation();
                 }
             else if(${header.command} == REGISTER_SESSION) {
             //    if(length != LEN_4) {
-            //        connection()->bro_analyzer()->ProtocolViolation(fmt("invalid ENIP REGISTER_SESSION length (%d)", ${header.length}));
+            //        connection()->zeek_analyzer()->AnalyzerViolation(zeek::util::fmt("invalid ENIP REGISTER_SESSION length (%d)", ${header.length}));
             //        return false;
             //        }
             //    if(${header.options} != ZERO_4B) {
-            //        connection()->bro_analyzer()->ProtocolViolation(fmt("invalid ENIP REGISTER_SESSION options (%d)", ${header.options}));
+            //        connection()->zeek_analyzer()->AnalyzerViolation(zeek::util::fmt("invalid ENIP REGISTER_SESSION options (%d)", ${header.options}));
             //        return false;
             //        }
 
-                connection()->bro_analyzer()->ProtocolConfirmation();
+                connection()->zeek_analyzer()->AnalyzerConfirmation();
                 }
             else if(${header.command} == UNREGISTER_SESSION) {
             //    if(length != ZERO_2B) {
-            //        connection()->bro_analyzer()->ProtocolViolation(fmt("invalid ENIP UNREGISTER_SESSION length (%d)", ${header.length}));
+            //        connection()->zeek_analyzer()->AnalyzerViolation(zeek::util::fmt("invalid ENIP UNREGISTER_SESSION length (%d)", ${header.length}));
             //        return false;
             //        }
             //    if(status != ZERO_4B) {
-            //        connection()->bro_analyzer()->ProtocolViolation(fmt("invalid ENIP UNREGISTER_SESSION status (%d)", ${header.status}));
+            //        connection()->zeek_analyzer()->AnalyzerViolation(zeek::util::fmt("invalid ENIP UNREGISTER_SESSION status (%d)", ${header.status}));
             //        return false;
             //        }
             //    if(${header.options} != ZERO_4B) {
-            //        connection()->bro_analyzer()->ProtocolViolation(fmt("invalid ENIP UNREGISTER_SESSION options (%d)", ${header.options}));
+            //        connection()->zeek_analyzer()->AnalyzerViolation(zeek::util::fmt("invalid ENIP UNREGISTER_SESSION options (%d)", ${header.options}));
             //        return false;
             //        }
 
-                connection()->bro_analyzer()->ProtocolConfirmation();
+                connection()->zeek_analyzer()->AnalyzerConfirmation();
                 }
             else if(${header.command} == LIST_SERVICES) {
             //    if(is_orig() && length != ZERO_2B) {
-            //        connection()->bro_analyzer()->ProtocolViolation(fmt("invalid ENIP LIST_SERVICES length (%d)", ${header.length}));
+            //        connection()->zeek_analyzer()->AnalyzerViolation(zeek::util::fmt("invalid ENIP LIST_SERVICES length (%d)", ${header.length}));
             //        return false;
             //        }
             //    if(${header.options} != ZERO_4B) {
-            //        connection()->bro_analyzer()->ProtocolViolation(fmt("invalid ENIP LIST_SERVICES options (%d)", ${header.options}));
+            //        connection()->zeek_analyzer()->AnalyzerViolation(zeek::util::fmt("invalid ENIP LIST_SERVICES options (%d)", ${header.options}));
             //        return false;
             //        }
 
-                connection()->bro_analyzer()->ProtocolConfirmation();
+                connection()->zeek_analyzer()->AnalyzerConfirmation();
                 }
             else if(${header.command} == SEND_RR_DATA || ${header.command} == SEND_UNIT_DATA) {
                 // Some packet use unconventionnal non-zero options. Commented in order to detect them.
             //    if(${header.options} != ZERO_4B) {
-            //        connection()->bro_analyzer()->ProtocolViolation(fmt("invalid ENIP options for SEND_RR_DATA or SEND_UNIT_DATA (%d)", ${header.options}));
+            //        connection()->zeek_analyzer()->AnalyzerViolation(zeek::util::fmt("invalid ENIP options for SEND_RR_DATA or SEND_UNIT_DATA (%d)", ${header.options}));
             //        return false;
             //        }
 
-                connection()->bro_analyzer()->ProtocolConfirmation();
+                connection()->zeek_analyzer()->AnalyzerConfirmation();
                 }
             
-            BifEvent::generate_enip(connection()->bro_analyzer(),
-                                    connection()->bro_analyzer()->Conn(),
+            zeek::BifEvent::enqueue_enip(connection()->zeek_analyzer(),
+                                    connection()->zeek_analyzer()->Conn(),
                                     is_orig(),
                                     ${header.command},
                                     ${header.length},
                                     ${header.session_handle},
                                     ${header.status},
-                                    bytestring_to_val(${header.sender_context}),
+                                    to_stringval(${header.sender_context}),
                                     ${header.options}
                                     );
             }
@@ -133,34 +133,34 @@ flow ENIP_Flow(is_orig: bool) {
             ${address.id} != SOCK_ADDR_INFO_OT &&
             ${address.id} != SOCK_ADDR_INFO_TO &&
             ${address.id} != SEQUENCED_ADDRESS_ITEM) {
-                connection()->bro_analyzer()->ProtocolViolation(fmt("invalid ENIP item ID (%d)", ${address.id}));
+                connection()->zeek_analyzer()->AnalyzerViolation(zeek::util::fmt("invalid ENIP item ID (%d)", ${address.id}));
                 return false;
                 }
 
             if(${address.id} == CDF_NULL && ${address.len} != ZERO_2B) {
-                connection()->bro_analyzer()->ProtocolViolation(fmt("invalid ENIP item ID and length (%d,%d)", ${address.id}, ${address.len}));
+                connection()->zeek_analyzer()->AnalyzerViolation(zeek::util::fmt("invalid ENIP item ID and length (%d,%d)", ${address.id}, ${address.len}));
                 return false;
                 }
             if(${address.id} == CONNECTION_BASED && ${address.len} != LEN_4) {
-                connection()->bro_analyzer()->ProtocolViolation(fmt("invalid ENIP item ID and length (%d,%d)", ${address.id}, ${address.len}));
+                connection()->zeek_analyzer()->AnalyzerViolation(zeek::util::fmt("invalid ENIP item ID and length (%d,%d)", ${address.id}, ${address.len}));
                 return false;
 
                 }
             if(${address.id} == SEQUENCED_ADDRESS_ITEM && ${address.len} != LEN_8) {
-                connection()->bro_analyzer()->ProtocolViolation(fmt("invalid ENIP item ID and length (%d,%d)", ${address.id}, ${address.len}));
+                connection()->zeek_analyzer()->AnalyzerViolation(zeek::util::fmt("invalid ENIP item ID and length (%d,%d)", ${address.id}, ${address.len}));
                 return false;
                 }
             if((${address.id} == SOCK_ADDR_INFO_TO || ${address.id} == SOCK_ADDR_INFO_OT) && ${address.len} != LEN_10) {
-                connection()->bro_analyzer()->ProtocolViolation(fmt("invalid ENIP item ID and length (%d,%d)", ${address.id}, ${address.len}));
+                connection()->zeek_analyzer()->AnalyzerViolation(zeek::util::fmt("invalid ENIP item ID and length (%d,%d)", ${address.id}, ${address.len}));
                 return false;
                 }
-            connection()->bro_analyzer()->ProtocolConfirmation();
-            BifEvent::generate_enip_data_address(connection()->bro_analyzer(),
-                                                connection()->bro_analyzer()->Conn(),
+            connection()->zeek_analyzer()->AnalyzerConfirmation();
+            zeek::BifEvent::enqueue_enip_data_address(connection()->zeek_analyzer(),
+                                                connection()->zeek_analyzer()->Conn(),
                                                 is_orig(),
                                                 ${address.id},
                                                 ${address.len},
-                                                bytestring_to_val(${address.data})
+                                                to_stringval(${address.data})
                                                 );
             }
 
@@ -171,12 +171,12 @@ flow ENIP_Flow(is_orig: bool) {
         if(::enip_common_packet_format) {
             //count shall be at least 2
             if(count == COUNT_1 || count == ZERO_2B) {
-                connection()->bro_analyzer()->ProtocolViolation(fmt("invalid ENIP item count in Common Packet Format (%d)", count));
+                connection()->zeek_analyzer()->AnalyzerViolation(zeek::util::fmt("invalid ENIP item count in Common Packet Format (%d)", count));
                 return false;
                 }
-            connection()->bro_analyzer()->ProtocolConfirmation();
-            BifEvent::generate_enip_common_packet_format(connection()->bro_analyzer(),
-                                                        connection()->bro_analyzer()->Conn(),
+            connection()->zeek_analyzer()->AnalyzerConfirmation();
+            zeek::BifEvent::enqueue_enip_common_packet_format(connection()->zeek_analyzer(),
+                                                        connection()->zeek_analyzer()->Conn(),
                                                         is_orig(),
                                                         count
                                                         );
@@ -187,9 +187,9 @@ flow ENIP_Flow(is_orig: bool) {
 
     function enip_target_item(type_code: uint16, length: uint16): bool %{
         if(::enip_target_item) {
-            connection()->bro_analyzer()->ProtocolConfirmation();
-            BifEvent::generate_enip_target_item(connection()->bro_analyzer(),
-                                                connection()->bro_analyzer()->Conn(),
+            connection()->zeek_analyzer()->AnalyzerConfirmation();
+            zeek::BifEvent::enqueue_enip_target_item(connection()->zeek_analyzer(),
+                                                connection()->zeek_analyzer()->Conn(),
                                                 is_orig(),
                                                 type_code,
                                                 length
@@ -202,24 +202,24 @@ flow ENIP_Flow(is_orig: bool) {
     function enip_target_item_services(target_item_services: Target_Item_Services): bool %{
         if(::enip_target_item_services) {
             if(${target_item_services.protocol} != COUNT_1) {
-                connection()->bro_analyzer()->ProtocolViolation(fmt("invalid ENIP protocol in Target Item Services (%d)", ${target_item_services.protocol}));
+                connection()->zeek_analyzer()->AnalyzerViolation(zeek::util::fmt("invalid ENIP protocol in Target Item Services (%d)", ${target_item_services.protocol}));
                 return false;
                 }
             if(((${target_item_services.flags} & RESERVED_MASK1) != 0) ||
                 ((${target_item_services.flags} & RESERVED_MASK2) != 0) ||
                 ((${target_item_services.flags} & RESERVED_MASK3) != 0)) {
-                connection()->bro_analyzer()->ProtocolViolation(fmt("invalid ENIP flags in Target Item Services (%d)", ${target_item_services.flags}));
+                connection()->zeek_analyzer()->AnalyzerViolation(zeek::util::fmt("invalid ENIP flags in Target Item Services (%d)", ${target_item_services.flags}));
                 return false;
                 }
-            connection()->bro_analyzer()->ProtocolConfirmation();
-            BifEvent::generate_enip_target_item_services(connection()->bro_analyzer(),
-                                                        connection()->bro_analyzer()->Conn(),
+            connection()->zeek_analyzer()->AnalyzerConfirmation();
+            zeek::BifEvent::enqueue_enip_target_item_services(connection()->zeek_analyzer(),
+                                                        connection()->zeek_analyzer()->Conn(),
                                                         is_orig(),
                                                         ${target_item_services.type_code},
                                                         ${target_item_services.length},
                                                         ${target_item_services.protocol},
                                                         ${target_item_services.flags},
-                                                        bytestring_to_val(${target_item_services.name})
+                                                        to_stringval(${target_item_services.name})
                                                         );
             }
 
@@ -229,16 +229,16 @@ flow ENIP_Flow(is_orig: bool) {
     function enip_register(protocol: uint16, options: uint16): bool %{
         if(::enip_register) {
             if(protocol != COUNT_1) {
-                connection()->bro_analyzer()->ProtocolViolation(fmt("invalid ENIP protocol in Register (%d)", protocol));
+                connection()->zeek_analyzer()->AnalyzerViolation(zeek::util::fmt("invalid ENIP protocol in Register (%d)", protocol));
                 return false;
                 }
             if(options != ZERO_2B) {
-                connection()->bro_analyzer()->ProtocolViolation(fmt("invalid ENIP options in Register (%d)", options));
+                connection()->zeek_analyzer()->AnalyzerViolation(zeek::util::fmt("invalid ENIP options in Register (%d)", options));
                 return false;
                 }
-            connection()->bro_analyzer()->ProtocolConfirmation();
-            BifEvent::generate_enip_register(connection()->bro_analyzer(),
-                                            connection()->bro_analyzer()->Conn(),
+            connection()->zeek_analyzer()->AnalyzerConfirmation();
+            zeek::BifEvent::enqueue_enip_register(connection()->zeek_analyzer(),
+                                            connection()->zeek_analyzer()->Conn(),
                                             is_orig(),
                                             protocol,
                                             options
@@ -252,12 +252,12 @@ flow ENIP_Flow(is_orig: bool) {
         // check for CIP here, iface_handle 0x00000000 is CIP
         if (${rr_unit.iface_handle} == 0x00000000) {
             if(::cip) {
-                connection()->bro_analyzer()->ProtocolConfirmation();
-                BifEvent::generate_cip(connection()->bro_analyzer(),
-                                        connection()->bro_analyzer()->Conn(),
+                connection()->zeek_analyzer()->AnalyzerConfirmation();
+                zeek::BifEvent::enqueue_cip(connection()->zeek_analyzer(),
+                                        connection()->zeek_analyzer()->Conn(),
                                         is_orig(),
                                         ${rr_unit.cip_data.service},
-                                        bytestring_to_val(${rr_unit.cip_data.data})
+                                        to_stringval(${rr_unit.cip_data.data})
                                         );
                 }
             }
@@ -268,9 +268,9 @@ flow ENIP_Flow(is_orig: bool) {
     
     function enip_list(item_count: uint16): bool %{
         if(::enip_list) {
-            connection()->bro_analyzer()->ProtocolConfirmation();
-            BifEvent::generate_enip_list(connection()->bro_analyzer(),
-                                        connection()->bro_analyzer()->Conn(),
+            connection()->zeek_analyzer()->AnalyzerConfirmation();
+            zeek::BifEvent::enqueue_enip_list(connection()->zeek_analyzer(),
+                                        connection()->zeek_analyzer()->Conn(),
                                         is_orig(),
                                         item_count
                                         );
@@ -284,12 +284,12 @@ flow ENIP_Flow(is_orig: bool) {
         if(::enip_list_identity) {
             // verify 0x0c command
             if(${list_identity.response_id} != LIST_IDENTITY_RESPONSE) {
-                connection()->bro_analyzer()->ProtocolViolation(fmt("invalid ENIP list identity response (0x%x)", ${list_identity.response_id}));
+                connection()->zeek_analyzer()->AnalyzerViolation(zeek::util::fmt("invalid ENIP list identity response (0x%x)", ${list_identity.response_id}));
                 return false;            
                 }
-            connection()->bro_analyzer()->ProtocolConfirmation();
-            BifEvent::generate_enip_list_identity(connection()->bro_analyzer(),
-                                                    connection()->bro_analyzer()->Conn(),
+            connection()->zeek_analyzer()->AnalyzerConfirmation();
+            zeek::BifEvent::enqueue_enip_list_identity(connection()->zeek_analyzer(),
+                                                    connection()->zeek_analyzer()->Conn(),
                                                     is_orig(),
                                                     ${list_identity.sock_info.sin_addr},
                                                     ${list_identity.vendor},
@@ -299,7 +299,7 @@ flow ENIP_Flow(is_orig: bool) {
                                                     ${list_identity.revision_low},
                                                     ${list_identity.status},
                                                     ${list_identity.serial_number},
-                                                    bytestring_to_val(${list_identity.product_name}),
+                                                    to_stringval(${list_identity.product_name}),
                                                     ${list_identity.state}
                                                     );
             }
